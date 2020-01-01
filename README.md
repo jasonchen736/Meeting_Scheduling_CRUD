@@ -11,7 +11,7 @@ Basic improvements can include:
 
 ## SETUP
 
-Python 3.7.2
+Python 3.7.2  
 pip 19.2.3
 
 pip install -r requirements.txt
