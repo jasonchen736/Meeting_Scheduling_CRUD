@@ -1,12 +1,12 @@
 # Appointments Service Challenge
 
-The below exercise was created as a RESTful API using Flask, SQLAlchemy, and SQLite.
-Validation uses Cerberus.
+The below exercise was created as a RESTful API using Flask, SQLAlchemy, and SQLite.  
+Validation uses Cerberus.  
 Swagger / OpenAPI documentation.
 
 Basic improvements can include:
-- Unit tests
-- Stronger validation checks, such as valid meeting times (future, valid start and end), meeting location and time overlap, identification of duplicate person included in meeting, duplicate person or location checks, etc.
+- Unit tests  
+- Stronger validation checks, such as valid meeting times (future, valid start and end), meeting location and time overlap, identification of duplicate person included in meeting, duplicate person or location checks, etc.  
 - Addition of model fields, such as date created, last updated, email or other unique person identifier, etc.
 
 ## SETUP
