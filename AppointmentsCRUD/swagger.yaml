@@ -1,0 +1,495 @@
+openapi: 3.0.0
+
+info:
+  version: 1.0.0
+  title: Appointments Service
+  description: >-
+    This appointments service is an api used by a single Operator to schedule meetings on the
+    behalf of other people. Meeting invitees or attendees will not be able interact with the api directly
+    and as such implementing authentication will not be a concern.
+
+paths:
+    /locations/:
+      get:
+        summary: Get all locations
+        responses:
+          '200':
+            description: A list of locations
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Location'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      post:
+        summary: Create a location
+        requestBody:
+          $ref: '#/components/requestBodies/locationCreate'
+        responses:
+          '200':
+            description: Location successfully created
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Location'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+    /locations/{location_id}:
+      get:
+        summary: Geta location by ID
+        parameters:
+          - $ref: '#/components/parameters/locationParam'
+        responses:
+          '200':
+            description: Location details
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Location'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      put:
+        summary: Create or update a location by ID
+        parameters:
+          - $ref: '#/components/parameters/locationParam'
+        requestBody:
+          $ref: '#/components/requestBodies/locationCreate'
+        responses:
+          '200':
+            description: Location successfully created / updated
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Location'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      delete:
+        summary: Delete a location by ID
+        parameters:
+          - $ref: '#/components/parameters/locationParam'
+        responses:
+          '200':
+            description: Location successfully deleted
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Location'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+
+    /meetings/:
+      get:
+        summary: Get all meetings
+        responses:
+          '200':
+            description: A list of meetings
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Meeting'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      post:
+        summary: Create a meeting
+        requestBody:
+          $ref: '#/components/requestBodies/meetingCreate'
+        responses:
+          '200':
+            description: Meeting successfully created
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Meeting'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+    /meetings/{meeting_id}:
+      get:
+        summary: Geta meeting by ID
+        parameters:
+          - $ref: '#/components/parameters/meetingParam'
+        responses:
+          '200':
+            description: Meeting details
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Meeting'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      put:
+        summary: Create or update a meeting by ID
+        parameters:
+          - $ref: '#/components/parameters/meetingParam'
+        requestBody:
+          $ref: '#/components/requestBodies/meetingCreate'
+        responses:
+          '200':
+            description: Meeting successfully created / updated
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Meeting'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      delete:
+        summary: Delete a meeting by ID
+        parameters:
+          - $ref: '#/components/parameters/meetingParam'
+        responses:
+          '200':
+            description: Meeting successfully deleted
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Meeting'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+
+    /persons/:
+      get:
+        summary: Get all persons
+        responses:
+          '200':
+            description: A list of persons
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Person'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      post:
+        summary: Create a person
+        requestBody:
+          $ref: '#/components/requestBodies/personCreate'
+        responses:
+          '200':
+            description: Person successfully created
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Person'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+    /persons/{person_id}:
+      get:
+        summary: Geta person by ID
+        parameters:
+          - $ref: '#/components/parameters/personParam'
+        responses:
+          '200':
+            description: Person details
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Person'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      put:
+        summary: Create or update a person by ID
+        parameters:
+          - $ref: '#/components/parameters/personParam'
+        requestBody:
+          $ref: '#/components/requestBodies/personCreate'
+        responses:
+          '200':
+            description: Person successfully created / updated
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Person'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+      delete:
+        summary: Delete a person by ID
+        parameters:
+          - $ref: '#/components/parameters/personParam'
+        responses:
+          '200':
+            description: Person successfully deleted
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Person'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+
+components:
+    schemas:
+      Person:
+        type: object
+        description: A person associated with a Meeting, whether they were invited or will be attending
+        properties:
+          id:
+            type: integer
+            description: Person record ID
+            example: 1
+          first_name: 
+            type: string
+            description: The person's legal first name or given name
+            example: Jane
+          last_name:
+            type: string
+            description: The person's legal last name or surname
+            example: Doe
+      Location:
+        type: object
+        description: A physical location with an address
+        properties:
+          id:
+            type: integer
+            description: Location record ID
+            example: 1
+          locality:
+            type: string
+            example: New York
+            description: The city or town.
+          line_1:
+            type: string
+            example: 45 West 45th Street
+            description: The street name and number.
+          line_2:
+            type: string
+            example: 16 Flr
+            description: The apartment number or floor number.
+          postal:
+            type: string
+            example: '10036'
+            description: The zip code/postal code.
+          region:
+            type: string
+            example: New York
+            description: The state/province/territory.
+      Meeting:
+        type: object
+        description: A scheduled assembly of people.
+        properties:
+          id:
+            type: integer
+            description: Meeting record ID
+            example: 1
+          people:
+            type: array
+            items:
+              $ref: '#/components/schemas/Person'
+          start_time:
+            type: string
+            description: When the meeting will begin
+            example: '2019-12-31 23:59:59'
+          end_time:
+            type: string
+            description: When the meeting will end
+            example: '2020-01-01 00:00:00'
+          location:
+            $ref: '#/components/schemas/Location'
+      Error:
+        type: object
+        description: Representation of a server error.
+        properties:
+          detail:
+            type: string
+            example: >-
+              The requested URL was not found on the server. If you entered the URL
+              manually please check your spelling and try again.
+            description: >-
+              A human readable explanation specific to this occurrence of the problem.
+          status:
+            type: integer
+            example: 404
+            description: >-
+              The HTTP status code ([RFC7231], Section 6) generated by the origin server
+              for this occurrence of the problem.
+          title:
+            type: string
+            example: Not Found
+            description: >-
+              A short, human-readable summary of the problem type.
+
+    parameters:
+      locationParam:
+        name: location_id
+        in: path
+        required: true
+        description: Location record ID
+        schema:
+          type : integer
+          minimum: 1
+      meetingParam:
+        name: meeting_id
+        in: path
+        required: true
+        description: Meeting record ID
+        schema:
+          type : integer
+          minimum: 1
+      personParam:
+        name: person_id
+        in: path
+        required: true
+        description: Person record ID
+        schema:
+          type : integer
+          minimum: 1
+
+    requestBodies:
+      locationCreate:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locality:
+                  type: string
+                  description: The city or town.
+                  example: 'New York'
+                line_1:
+                  type: string
+                  description: The street name and number.
+                  example: '45 West 45th Street'
+                line_2:
+                  type: string
+                  description: The apartment number or floor number.
+                  example: '16 Flr'
+                postal:
+                  type: string
+                  description: The zip code/postal code.
+                  example: '10036'
+                region:
+                  type: string
+                  description: The state/province/territory.
+                  example: 'New York'
+              required:
+                - locality
+                - line_1
+                - postal
+                - region
+      meetingCreate:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_time:
+                  type: string
+                  description: When the meeting will begin
+                  example: '2019-12-31 23:59:59'
+                end_time:
+                  type: string
+                  description: When the meeting will end
+                  example: '2020-01-01 00:00:00'
+                location_id:
+                  type: integer
+                  description: Location record ID
+                  example: 1
+                people:
+                  type: array
+                  description: List of person record IDs
+                  items:
+                    type: integer
+                  minimum: 2
+                  example: [1, 2]
+              required:
+                - start_time
+                - end_time
+                - location_id
+                - people
+      personCreate:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name: 
+                  type: string
+                  description: The person's legal first name or given name
+                  example: 'Jane'
+                last_name:
+                  type: string
+                  description: The person's legal last name or surname
+                  example: 'Doe'
+              required:
+                - first_name
+                - last_name
+
+    responses:
+      BadRequest:
+        description: Bad Request for operation.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Error'
+                - type: object
+                  properties:
+                    status:
+                      example: 400
+                    detail:
+                      example: Missing query parameter 'zip_code'
+      NotFound:
+        description: The specified resource was not found.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Error'
+                - type: object
+                  properties:
+                    status:
+                      example: 404
+                    detail:
+                      example: >-
+                        The requested URL was not found on the server. If you
+                        entered the URL manually please check your spelling and
+                        try again.
+      InternalServerError:
+        description: Internal server error.
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Error'
+                - type: object
+                  properties:
+                    status:
+                      example: 500
+                    detail:
+                      example: >-
+                        The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
