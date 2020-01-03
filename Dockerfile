@@ -5,7 +5,8 @@ RUN pip install -r requirements.txt
 
 COPY ./AppointmentsCRUD AppointmentsCRUD
 
-RUN python AppointmentsCRUD/init_db.py
+#I had committed the sqlite file, so not needed
+#RUN python AppointmentsCRUD/init_db.py
 
 EXPOSE 5000
 
